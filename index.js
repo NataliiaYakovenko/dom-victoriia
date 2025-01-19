@@ -1,54 +1,58 @@
-//Обробка подій
-/*Обробник подій - це певна функція, яка здійсниться наприклад при натисканні кнопки
-Щоб навісити обробник на певну подію, нам потрібно мати доступ до елемента, тобто отримати посилання на елемент
-через будь - який метод getElementById/getElementsByClassName/ getElementsByClassName
-У властивість елемента onclick ми кладемо(присвоюємо функцію), це саме та функція, яка буде виконана, коли настанить подія
+//Атрибути
+//Атрибути елемента - це властивості відповідних об'єктів
 
-*/
-const btn = document.getElementById('clickBtn');
-console.log(btn);
-console.dir(btn);
+//Через властивості
+const p1 = document.querySelector("#p1");
+console.log(p1);
+console.dir(p1);
+console.log(p1.title);
+console.log(p1.id);
 
-const clickHander = function (event){ // прописується подія
-console.log('Btn was clicked');
+//змінюємо атрибуе title
+p1.title = "New title";
+
+//Атрибут boolean задання
+//p1.hidden = true;
+
+//Атрибут style
+p1.style.color = "green";
+p1.style.backgroundColor = "pink";
+//----------------------------------
+
+//Через методи
+const p2 = document.querySelector("#p2");
+console.log(p2);
+console.dir(p2);
+
+//встановлюємо значення атрибуту
+p2.setAttribute("title", "Title of p2"); //p id="p2" title ='Title of 2'
+
+p2.setAttribute("style", "font-size: 30px; color: orange;"); // style = 'font - size: 30px; color: 'orange''
+
+//якщо boolean
+//p2.setAttribute('hidden','hidden') //в качестві значення вказуться таке саме як іключ
+
+console.log(p2.getAttribute("style"));
+
+//задати для body будь-який колір
+//document.querySelector('body').style.backgroundColor='grey'
+const body = document.querySelector("body");
+body.style.backgroundColor = "grey";
+
+//------------------------------------------------------------------
+//Атрибут, який дозволяє змінити вміст якогось елемента
+//Наприклад у р2 потрібно змінити текст
+p2.textContent =
+  "New content dkaldjaljdalda;lda;ldkal;dkaldka;lkdasl;dkal;dka;lk";
+//--------------------------------------------------------------------
+
+//Задати атрибути зображення по об'єктам
+const imgAttr = {
+  src: "https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg",
+  alt: "cat",
 };
-btn.onclick = clickHander;//запустити кнопку
-
-btn.onclick = null // зняти обробник, зробити кнопку неактивною
-//--------------------------------------------------------------
-/*У об'єкта loginBtn викликаємо метод addEventListener 
-і у якості параметрів передати (подія, обробник)
-Наша задача написати обробник
-
-*/
-const loginBtn = document.getElementById('loginBtn');
-console.log(loginBtn)
-
-function loginBtnHandler(event){
-   alert('Login in process');
-}
-//addEventListener - навішувати обробник
-loginBtn.addEventListener('click',loginBtnHandler); //'click' - подія,loginBtnHandler -посилальник  
-
-//removeEventListener - знімати обробник
-loginBtn.removeEventListener('click',loginBtnHandler);  //зняти подію
-//----------------------------------------------------------------
-
-//Виводити "Click me!" коли наводимо курсивом миші на конпу loginBtn
-function loginMouseMoveHandler(event){
-console.log("Click me!");
-}
-
-loginBtn.addEventListener('mousemove', loginMouseMoveHandler)
-//----------------------------------------------------------------
-
-//Створити конпу і при натисканні на неї виводити "Hello world!"
-
-const click = document.getElementById('clickWorld')
-console.log(click);
-
-function clickWorld(event){
- alert('Hello world!')
-}
-
-click.onclick = clickWorld;
+const imgEl = document.querySelector('img')
+imgEl.src = imgAttr.src;
+imgEl.alt = imgAttr.alt;
+//Задати розміри зображення
+imgEl.setAttribute('width','400')
