@@ -1,41 +1,49 @@
-/*
-Задача. При натисканні на кнопку
+const slides = [
+    {
+      src: 'https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      alt: 'landscape1',
+    },
+    {
+      src: 'https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      alt: 'landscape2',
+    },
+    {
+      src: 'https://images.pexels.com/photos/371589/pexels-photo-371589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      alt: 'landscape3',
+    },
+    {
+      src: 'https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      alt: 'landscape4',
+    },
+  ];
+   
+  let currentSlideIndex = 0;
 
-Отримати заголовок першого рівня
-- встановити для нього інший кольор тла
-- виставити для заголовків другого рівня шрифт 20рх і їх колір
+  //встановити в якості початкового зображення slides[0]
+  const slideImage = document.querySelector('img');
+  slideImage.src = slides[currentSlideIndex].src;
+  slideImage.alt = slides[currentSlideIndex].alt;
 
-Встановити src="" alt="" і розміри для головного зображення
-Встановити src="" alt="" і розміри для зображення в головному артиклі
-*/
+  const [prevBtn, nextBtn] = document.querySelectorAll('.navBtn');
 
-/*Алгоритм
-1. Отримати посилання на кнопку
-2. Задати функцію обробник і навісити її як обробник події на клік
-3. Наповнити цю функцію певним змістом
-   - отримати посилання на h1
-   - встановити для h1 кольор тла
+  nextBtn.addEventListener('click', nextSlideHandler);
+  function nextSlideHandler(event){
+    if(currentSlideIndex < slides.length-1){
+        currentSlideIndex++
+    }else{
+        currentSlideIndex = 0;
+    }
+    slideImage.src = slides[currentSlideIndex].src;
+    slideImage.alt = slides[currentSlideIndex].alt;
+  }
 
-*/
-
-const btn = document.querySelector('button')
-
-function getClickHandler(event){
- const h1 = document.querySelector('h1')
- h1.style.backgroundColor = 'blue'
-
- const img = document.querySelector('.mainImg')
- img.src="https://vetmarlborough.co.nz/wp-content/uploads/cat-facts.jpg";
- img. alt="cat";
- img.style.width = '300px';
- img.style.hight = '300px';
- img.style.objectFit = 'cover';
-
- const h2 = document.querySelectorAll('h2')
- h2. forEach((h2)=>{
-     h2.style.fontSize = '20px';
-     h2.style.color = 'green';
- })
-
-}
-btn.addEventListener('click',getClickHandler)
+  prevBtn.addEventListener('click',prevSlideHandler)
+  function prevSlideHandler(event){
+    if(currentSlideIndex > 0){
+        currentSlideIndex--;
+    }else{
+        currentSlideIndex = slides.length - 1;
+    }
+    slideImage.src = slides[currentSlideIndex].src;
+    slideImage.alt = slides[currentSlideIndex].alt;
+  }
