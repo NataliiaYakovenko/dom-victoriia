@@ -5,22 +5,42 @@
 4. Навісити обробник на кнопку(+)
 5. В обробнику зменшити counter(лічильник)
 */
-const [decBtn, incBtn] = document.querySelectorAll(".counterBtn");
-const counterElement = document.querySelector('#counter')
 
-let counter = 0;
-counterElement.textContent =counter;
+//Model - данні + методи роботи з ним
+class Counter {
+  constructor(counter) {
+    this.counter = counter;
+  }
+
+  decrement() {
+    this.counter--;
+  }
+
+  increment() {
+    this.counter++;
+  }
+}
+
+//ViewModel
+const [decBtn, incBtn] = document.querySelectorAll(".counterBtn");
+const counterElement = document.querySelector("#counter");
+
+const count = new Counter(0);
+
+updateView();
 
 decBtn.addEventListener("click", decrementCount);
 function decrementCount(event) {
-  counter--;
-  counterElement.textContent = counter;
+  count.decrement();
+  updateView();
 }
 
 incBtn.addEventListener("click", incrementCount);
 function incrementCount(event) {
-  counter++;
-  counterElement.textContent = counter;
+  count.increment();
+  updateView();
 }
 
-
+function updateView() {
+  counterElement.textContent = count.counter;
+}
