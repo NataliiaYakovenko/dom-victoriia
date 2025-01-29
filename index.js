@@ -1,17 +1,20 @@
-'use strict'
-const div = document.querySelector('.div');
 
-div.addEventListener('click',function(){
-  //this.classList.add('div2');
-  //this.classList.remove('div');
-  this.classList.toggle('div2')
-});
-div.style.color = 'red';
-//класи - рядок з іменами класів, розділиними пробілами
-//div.className = div.className + ' div2';
+const burgerBtn = document.querySelector('.burgerMenuBtn');
+const burgerContaner = document.querySelector('.burgerMenuContainer')
 
-const fullName = document.querySelector('.full-name');
+burgerBtn.addEventListener('click', burgerClickHandler);
+function burgerClickHandler(event){
+  burgerContaner.classList.toggle('burgerMenuContainerHide');
+  burgerContaner.classList.toggle('burgerMenuContainerActive');
+  console.log('btn');
+  event.stopPropagation();
+}
 
-fullName.addEventListener('click',function(){
-  this.classList.toggle('full-name')
-})
+document.body.addEventListener('click',bodyClickHandler,/*{capture: true}*/)
+function bodyClickHandler(){
+  burgerContaner.classList.add('burgerMenuContainerHide');
+  burgerContaner.classList.remove('burgerMenuContainerActive');
+  console.log('body');
+
+}
+
