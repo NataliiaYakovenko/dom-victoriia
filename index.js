@@ -1,52 +1,17 @@
-//Керування розповсюдження подій
+'use strict'
+const div = document.querySelector('.div');
 
-const body = document.body;
-const section = document.querySelector("section");
-const button = document.querySelector("button");
-
-/*button.addEventListener('click', buttonClickHandler)
-function buttonClickHandler(event){
-console.log(event);
-console.log(this)
-console.log(event.target);
-console.log(event.currentTarget);
-
-//якщо я хочу змінити колір кнопки
-this.style.backgroundColor = 'blue'
-}
-
-function clickHandler(event){
-  console.log(event);
-  console.log(this)
-  console.log(event.target);
-  console.log(event.currentTarget);
-  console.log('-----------------------------------------');
- 
-  event.target.style.backgroundColor = 'red'
-  }
-  
-  //Занурення і всплиття - порядок виклику обробників
-
-  //На занурення
-  body.addEventListener('click', clickHandler,{capture:true})
-  section.addEventListener('click', clickHandler,{capture:true})
-  button.addEventListener('click', clickHandler,{capture:true})
-
-  //На всплиття
-  button.addEventListener('click', clickHandler)
-  section.addEventListener('click', clickHandler)
-  body.addEventListener('click', clickHandler)
-*/
-//Припинити розповсюдження події
-
-let clickCounter = 0;
-
-body.addEventListener("click", () => {
- clickCounter++ ;
- console.log(clickCounter)
+div.addEventListener('click',function(){
+  //this.classList.add('div2');
+  //this.classList.remove('div');
+  this.classList.toggle('div2')
 });
+div.style.color = 'red';
+//класи - рядок з іменами класів, розділиними пробілами
+//div.className = div.className + ' div2';
 
-button.addEventListener("click", (event) => {
-  event.stopPropagation(); //припинення розповсюдження події
+const fullName = document.querySelector('.full-name');
 
-});
+fullName.addEventListener('click',function(){
+  this.classList.toggle('full-name')
+})
