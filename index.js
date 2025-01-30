@@ -1,20 +1,32 @@
+'use strict'
 
-const burgerBtn = document.querySelector('.burgerMenuBtn');
-const burgerContaner = document.querySelector('.burgerMenuContainer')
+const section = document.createElement('section')
+const divRoot = document.querySelector('#root')
 
-burgerBtn.addEventListener('click', burgerClickHandler);
-function burgerClickHandler(event){
-  burgerContaner.classList.toggle('burgerMenuContainerHide');
-  burgerContaner.classList.toggle('burgerMenuContainerActive');
-  console.log('btn');
-  event.stopPropagation();
-}
+//додавання дочірнього елемента 
+//append -  додає елемент в кінець колекції (масиву, списку, рядка і т. п.).
+//preppend -  додає елемент на початок колекції.
 
-document.body.addEventListener('click',bodyClickHandler,/*{capture: true}*/)
-function bodyClickHandler(){
-  burgerContaner.classList.add('burgerMenuContainerHide');
-  burgerContaner.classList.remove('burgerMenuContainerActive');
-  console.log('body');
+divRoot.append(section);
+section.textContent = 'Lorem ipsum';
+section.style.backgroundColor = 'grey'
 
-}
+const article = document.createElement('article');
+divRoot.prepend(article);
+article.textContent = 'Lorem ipsum';
+article.style.backgroundColor = 'yellow'
+//--------------------------------------------
 
+//додаванн сіблінгів 
+//before
+//after
+
+const button = document.createElement('button');
+section.after(button)
+button.textContent = 'button';
+
+//видалення елементу
+const divRemove = document.querySelector('.remove')
+divRemove.addEventListener('click', function(){
+  this.remove();
+})
