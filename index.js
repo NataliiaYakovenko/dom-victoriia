@@ -52,7 +52,9 @@ trash.classList.add('fa-trash');
 trash.classList.add('trash-icon');
 
 function deleteTfash(event){
-  userCardEl.remove();
+  //userCardEl.remove();
+  //event.target.parentElement.remove();
+  event.target.closest('.user-card').remove();
 }
 trash.onclick = deleteTfash;
 
