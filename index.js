@@ -1,12 +1,41 @@
 "use strict";
 
-const user = {
-  firstName: "Roland",
-  lastName: "Simonyan",
-  age: 27,
-  photoSrc:
-    "https://img.freepik.com/free-psd/3d-illustration-person-with-long-hair_23-2149436197.jpg?ga=GA1.1.1872930788.1728835828&semt=ais_hybrid",
-};
+const users = [
+  {
+    firstName: 'Test1',
+    lastName: 'Testovich1',
+    age: 28,
+    photoSrc: 'https://sigc.edu/sigc/ad-sigc/datas/images/userimg.jpg',
+  },
+  {
+    firstName: 'Test2',
+    lastName: 'Testovich2',
+    age: 31,
+    photoSrc:
+      'https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+  {
+    firstName: 'Test3',
+    lastName: 'Testovich3',
+    age: 70,
+    photoSrc:
+      'https://images.pexels.com/photos/573299/pexels-photo-573299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+  {
+    firstName: 'Test4',
+    lastName: 'Testovich4',
+    age: 20,
+    photoSrc:
+      'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+  {
+    firstName: 'Test5',
+    lastName: 'Testovich5',
+    age: 28,
+    photoSrc:
+      'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  },
+];
 /*
 Алгоритм
 
@@ -22,15 +51,24 @@ const user = {
 Обовєязкові
 6. Вбудуваи його туди куди потрібно
 */
+
+
+//викорисовуємо метод map
+const userCards = users.map(u=>creatUserCard(u))
+console.log(userCards);
+document.body.append(...userCards);
+
+function creatUserCard(user){
 const userCardEl = document.createElement("article");
 userCardEl.classList.add("user-card");
-document.body.append(userCardEl);
-
 const userImg = creatImg(user);
 const userInfo = creatUserInfo(user);
 const trash = creatTrash();
 
 userCardEl.append(userImg,userInfo,trash);
+
+return userCardEl;
+}
 
 
 function creatTrash(){
