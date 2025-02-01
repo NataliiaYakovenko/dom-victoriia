@@ -1,8 +1,30 @@
- 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
- 
+:root {
+  font-family: sans-serif;
+  --user-image-size: 100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.user-card {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: gray 0 0 5px ;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 15px;
+}
+.user-image {
+  width: var(--user-image-size);
+  height: var(--user-image-size);
+  border-radius: 50%;
+  border: 1px solid violet;
+}
+.user-age{
+  color: green;
+}
+.trash-icon {
+  margin-left: auto;
+}
