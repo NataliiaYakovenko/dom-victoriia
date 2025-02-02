@@ -1,57 +1,44 @@
 "use strict";
 
-//setTimeout - виконати дію через певний час
+/*
+Алгоритм
+- start - запустити накопичення мілісекунд
+- stop - зупинити накопичення мілісекунди
+- rest - скинути накопичені мілісекунди
+*/
 
-//setInterval - виконувати одну і ту саму дію з певним інтервалом
+//let timer = new Date(0);
+let timer = 0;
+let intervalId = null;
 
-function timeoutAction() {
-  console.log("hello");
-}
-console.log("before timeout");
-const timeoutId = setTimeout(timeoutAction, 3000);
-console.log("after timeout");
-clearTimeout(timeoutId); // приостановити дію
+const timeEl = document.querySelector(".timer");
+const [startBtn, stopBtn, resetBtn] = document.querySelectorAll(
+  ".btn-container > button"
+);
 
-let i = 0;
-function intervalHandler() {
-  if (i === 5) {
-    return clearInterval(intervalId);
+startBtn.onclick = startBtnHandler;
+function startBtnHandler() {
+  function tick() {
+    timer++;
+    updateTime(timer);
+    console.log(timer);
   }
-  console.log(++i);
+  if (!intervalId) {
+    intervalId = setInterval(tick, 1);}
 }
 
-console.log("before interval");
-const intervalId = setInterval(intervalHandler, 2000);
-console.log("after interval");
-//clearInterval(intervalId) // приостановити дію
-
-
-function deleteBtn(){
-  const btn = document.querySelector('button');
-  btn.remove();
+stopBtn.onclick = stopBtnHandler;
+function stopBtnHandler() {
+  clearInterval(intervalId);
+  intervalId = null;
 }
-setTimeout(deleteBtn, 3000); //автоматичне видалення кнопки через 3 секунди
-//-----------------------------------------------------
 
-//При натисканні на кнопку перефарбувати її через 2 секунди
-
-const changeBtn = document.querySelector('.btn');
-
-function changeColor(event){
-  setTimeout(()=>{
-    changeBtn.style.backgroundColor = 'red'
-  },2000)
+resetBtn.onclick = resetBtnHandler;
+function resetBtnHandler() {
+  timer = 0;
+  updateTime(timer);
 }
-changeBtn.addEventListener('click',changeColor)
-//-------------------------------------------------------
 
-//Після натискання на кнопку змінювати її колір кожні 2 секунди
-
-const paintBtn = document.querySelector('.paintBtn')
-
-function paintingButton (){
-  setInterval(()=>{
-    paintBtn.style.backgroundColor = 'green'
-  },2000);
+function updateTime(timer) {
+  timeEl.textContent = timer;
 }
-paintBtn.addEventListener('click',paintingButton);
