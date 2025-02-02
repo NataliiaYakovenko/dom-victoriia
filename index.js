@@ -1,46 +1,27 @@
 "use strict";
 
-/*
-Алгоритм
-- start - запустити накопичення мілісекунд
-- stop - зупинити накопичення мілісекунди
-- rest - скинути накопичені мілісекунди
-*/
+//JSON
 
-let timer = new Date(0);
-let intervalId = null;
-
-const timeEl = document.querySelector(".timer");
-const [startBtn, stopBtn, resetBtn] = document.querySelectorAll(
-  ".btn-container > button"
-);
-
-updateTime(timer);
-
-startBtn.onclick = startBtnHandler;
-function startBtnHandler() {
-  const DELAY = 100;
-  function tick() {
-    timer.setMilliseconds(timer.getMilliseconds()+DELAY)
-    updateTime(timer);
-    console.log(timer);
-  }
-  if (!intervalId) {
-    intervalId = setInterval(tick, DELAY);}
+const obj ={
+  number: 1,
+  string:'Nataliia',
+  array: [1,2,false],
+  boolean: true,
+  null: null,
+  object:{prop:10},
+  getNumber(){     // методи не передаються
+    return this.number;
+  },
+  undefined:undefined, //не передається
 }
+console.log(obj);
 
-stopBtn.onclick = stopBtnHandler;
-function stopBtnHandler() {
-  clearInterval(intervalId);
-  intervalId = null;
-}
+//Передача даних з об'єкту на сервер
+//obj => JSON - серіалізаія
+const objJson = JSON.stringify(obj);
+console.log(objJson);
 
-resetBtn.onclick = resetBtnHandler;
-function resetBtnHandler() {
-  timer = new Date(0);
-  updateTime(timer);
-}
-
-function updateTime(timer) {
-  timeEl.textContent = `${timer.getMinutes()}:${timer.getSeconds()}:${timer.getMilliseconds()}`;
-}
+//Зворотня передача даних з серверу на JSON
+//JSON => obj   - десеріалізаія
+const parseObj = JSON.parse(objJson);
+console.log(parseObj);
