@@ -7,8 +7,7 @@
 - rest - скинути накопичені мілісекунди
 */
 
-//let timer = new Date(0);
-let timer = 0;
+let timer = new Date(0);
 let intervalId = null;
 
 const timeEl = document.querySelector(".timer");
@@ -16,15 +15,18 @@ const [startBtn, stopBtn, resetBtn] = document.querySelectorAll(
   ".btn-container > button"
 );
 
+updateTime(timer);
+
 startBtn.onclick = startBtnHandler;
 function startBtnHandler() {
+  const DELAY = 100;
   function tick() {
-    timer++;
+    timer.setMilliseconds(timer.getMilliseconds()+DELAY)
     updateTime(timer);
     console.log(timer);
   }
   if (!intervalId) {
-    intervalId = setInterval(tick, 1);}
+    intervalId = setInterval(tick, DELAY);}
 }
 
 stopBtn.onclick = stopBtnHandler;
@@ -35,10 +37,10 @@ function stopBtnHandler() {
 
 resetBtn.onclick = resetBtnHandler;
 function resetBtnHandler() {
-  timer = 0;
+  timer = new Date(0);
   updateTime(timer);
 }
 
 function updateTime(timer) {
-  timeEl.textContent = timer;
+  timeEl.textContent = `${timer.getMinutes()}:${timer.getSeconds()}:${timer.getMilliseconds()}`;
 }
